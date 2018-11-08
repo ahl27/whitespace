@@ -52,21 +52,20 @@ def arithmetic(g):
     num1 = stack.pop()
     num2 = stack.pop()
 
-    if bytestring[i:i+2] == '00':
+    if bytestring[i:i+2] == '00': #add
         stack.push(num1 + num2)
-    elif bytestring[i:i+2] == '01':
+    elif bytestring[i:i+2] == '01': #subtract
         stack.push(num1 - num2)
-    elif bytestring[i:i+2] == '02':
+    elif bytestring[i:i+2] == '02': #multiply
         stack.push(num1 * num2)
-    elif bytestring[i:i+2] == '10':
+    elif bytestring[i:i+2] == '10': #divide
         stack.push(num1 // num2)
-    elif bytestring[i:i+2] == '11':
+    elif bytestring[i:i+2] == '11': #modulo
         stack.push(num1 % num2)
 
     g.i = i+2
 
 def heap_access(g):
-    ## NOTE: note sure if values are pushed back to the stack after call ##
     bytestring = g.bytestring
     stack = g.stack
     i = g.i
@@ -90,6 +89,10 @@ def heap_access(g):
     g.memory = memory
 
 def flow_control(g):
+    #############################################
+    ## No idea if any of this block is working ##
+    #############################################
+
     bytestring = g.bytestring
     stack = g.stack
     i = g.i
@@ -167,7 +170,7 @@ def io(g):
 
 
 def get_num(bytestring, i):
-    #working correctly
+    #interprets a number or label from the code
     num_string = ''
     ctr = 0
     if bytestring[i] == '1':
