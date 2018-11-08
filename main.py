@@ -37,19 +37,21 @@ class Globals:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('fname', type=str)
+    parser.add_argument('fname', type=str) #text file to encrypt or whitespace file to decrypt
     parser.add_argument("-d", '--decrypt', action='store_true')
     parser.add_argument('-e', '--encrypt', action='store_true')
+    parser.add_argument('-o', '--output') #name of file to output to
 
     args = parser.parse_args()
+    print("\n")
 
+    if args.encrypt: #encrypts a message into whitespace
+        encrypt(args.fname, args.output)
     if args.decrypt:
         globals = Globals()
         decrypt(args.fname, globals)
-    if args.encrypt:
-        encrypt(args.fname)
 
-    print("\n\n")
+    print("\n")
 
 if __name__ == '__main__':
     main()

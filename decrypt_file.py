@@ -16,6 +16,7 @@ def decrypt(fname, g):
 
     #0 is space, 1 is tab, 2 is carraige return
     while g.bytestring:
+        #print(g.bytestring[g.i:])
         if g.bytestring[g.i] == '0':
             #stack manipulation
             g.i += 1

@@ -147,10 +147,10 @@ def io(g):
 
     if control == '00':
         #output character at top of stack
-        print(chr(stack.peek()), end='')
+        print(chr(stack.pop()), end='')
     elif control == '01':
         #output number at top of stack
-        print(stack.peek(), end='')
+        print(stack.pop(), end='')
     elif control == '10':
         #read character from input and store in addr of stack top value (not sure if pop or peek)
         char = ord(input())
