@@ -26,6 +26,7 @@ class Globals:
         old.copy_vals(self)
 
     def copy_vals(self, newg):
+        #copies the values from self into newg
         newg = Globals()
         newg.labels = self.labels
         newg.subroutine = self.subroutine

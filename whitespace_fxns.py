@@ -110,24 +110,28 @@ def flow_control(g):
         num, addi = get_num(bytestring, i)
         i += addi
         labels[num] = i
+        g.i = i
     elif control == '01':
         #call subroutine
         num, addi = get_num(bytestring, i)
         i += addi
         copyGlobals = Globals()
         g.copy_vals(copyGlobals)
+        copyGlobals.i = i
         g.store(copyGlobals)
-        g.i = i
+        g.i = labels[num]
     elif control == '02':
         #jump to label
-        num= get_num(bytestring, i)
+        num = get_num(bytestring, i)
         i = labels[num]
+        g.i = i
     elif control == '10':
         #if top of stack 0, jump to label
         num, addi = get_num(bytestring, i)
         i += addi 
         if stack.pop() == 0:
             g.i = labels[num]
+        g.i = i
     elif control == '12':
         #if top of stack is negative, jump to label
         num, addi = get_num(bytestring, i)
@@ -150,10 +154,10 @@ def flow_control(g):
         i += addi
         loc = stack.pop()
         labels[num] = loc
+        g.i = i
 
 
 
-    g.i = i
     g.labels = labels
     g.exit = exit
 
