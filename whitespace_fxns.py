@@ -31,12 +31,14 @@ def stack_manipulation(g):
     elif bytestring[i:i+2] == '10':
         #copy N-th item of the stack
         i += 2
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi
         stack.push(stack.get_index(i))
     elif bytestring[i:i+2] == '12':
         #slide N items off stack keeping top item
         i += 2
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi
         top = stack.pop()
         for j in range(num):
             stack.pop()
@@ -105,27 +107,31 @@ def flow_control(g):
 
     if control == '00':
         #set label at current location
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi
         labels[num] = i
     elif control == '01':
         #call subroutine
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi
         copyGlobals = Globals()
         g.copy_vals(copyGlobals)
         g.store(copyGlobals)
         g.i = i
     elif control == '02':
         #jump to label
-        num, i = get_num(bytestring, i)
+        num= get_num(bytestring, i)
         i = labels[num]
     elif control == '10':
         #if top of stack 0, jump to label
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi 
         if stack.pop() == 0:
             g.i = labels[num]
     elif control == '12':
         #if top of stack is negative, jump to label
-        num, i = get_num(bytestring, i)
+        num, addi = get_num(bytestring, i)
+        i += addi
         if stack.pop() < 0:
             g.i = labels[num]
     elif control == '12':
@@ -134,6 +140,18 @@ def flow_control(g):
     elif control == '22':
         #end program
         exit = True
+    elif control == '11':
+        # ** NOT IN ORIGINAL LANGUAGE ** #
+        #set label for another location
+        #location is the top element on the stack
+        #this way subroutines can be set after the LLL termination call
+        #adds the ability to have simple functions
+        num, addi = get_num(bytestring, i)
+        i += addi
+        loc = stack.pop()
+        labels[num] = loc
+
+
 
     g.i = i
     g.labels = labels
