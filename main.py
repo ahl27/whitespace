@@ -42,7 +42,7 @@ def main():
     parser.add_argument('fname', type=str, help='Filename of textfile to encrypt or .wsp/.txt file to decrypt') #text file to encrypt or whitespace file to decrypt
     parser.add_argument("-d", '--decrypt', action='store_true', help='OPTIONAL: flag to signal decryption') #flag to decrypt
     parser.add_argument('-e', '--encrypt', action='store_true', help='OPTIONAL: flag to signal encryption') #flag to encrypt
-    parser.add_argument('-o', '--output', help='OPTIONAL: name of output file for encryption. ".wsp" extension added automatically.') #name of file to output to
+    parser.add_argument('-o', '--output', default='converted', help='OPTIONAL: name of output file for encryption. ".wsp" extension added automatically.') #name of file to output to
 
     args = parser.parse_args()
     print("\n")
