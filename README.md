@@ -1,7 +1,8 @@
 # whitespace
 ## Whitespace code interpreter and text encrypter
 
-Script is written using Python 3.
+Script is written using Python 3. 
+
 Usage: python main.py fname [-e / -d] [-o output_name]
 
 Parameters:
