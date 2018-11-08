@@ -1,4 +1,5 @@
 def encrypt(fname, output):
+    output += '.wsp'
     write_string = ''
     with open(fname) as f:
         for line in f:
